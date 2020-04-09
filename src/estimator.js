@@ -23,11 +23,11 @@ const estimatorHelper = (data, val) => {
     data.totalHospitalBeds * 0.35 - severeCasesByRequestedTime
   );
   const casesForICUByRequestedTime = Math.floor(
-    severeCasesByRequestedTime * 0.05
+    infectionsByRequestedTime * 0.05
   );
 
   const casesForVentilatorsByRequestedTime = Math.floor(
-    severeCasesByRequestedTime * 0.02
+    infectionsByRequestedTime * 0.02
   );
 
   const dollarsInFlight = infectionsByRequestedTime
