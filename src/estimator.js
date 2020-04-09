@@ -19,9 +19,9 @@ const estimatorHelper = (data, val) => {
   const severeCasesByRequestedTime = Math.floor(
     0.15 * infectionsByRequestedTime
   );
-  const hospitalBedsByRequestedTime = Math.floor(
-    data.totalHospitalBeds * 0.35 - severeCasesByRequestedTime
-  );
+  const beds = data.totalHospitalBeds * 0.35 - severeCasesByRequestedTime;
+  const hospitalBedsByRequestedTime = beds > 0 ? Math.floor(beds) : Math.ceil(beds);
+
   const casesForICUByRequestedTime = Math.floor(
     infectionsByRequestedTime * 0.05
   );
