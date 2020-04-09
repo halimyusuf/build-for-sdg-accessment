@@ -30,11 +30,10 @@ const estimatorHelper = (data, val) => {
     severeCasesByRequestedTime * 0.02
   );
 
-  const dollarsInFlight =
-    infectionsByRequestedTime *
-    data.region.avgDailyIncomeInUSD *
-    data.region.avgDailyIncomePopulation *
-    30;
+  const dollarsInFlight = infectionsByRequestedTime
+    * data.region.avgDailyIncomeInUSD
+    * data.region.avgDailyIncomePopulation
+    * 30;
   return {
     currentlyInfected: infected,
     infectionsByRequestedTime,
