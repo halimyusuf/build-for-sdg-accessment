@@ -1,22 +1,24 @@
 /* eslint-disable no-param-reassign */
 // prettier-ignore
-const infectedAtTime = (currentlyInfected, periodType, timeToElapse) => {
+
+const timeInDays = (periodType, timeToElapse) => {
   if (periodType === 'months') {
     timeToElapse *= 30;
   } else if (periodType === 'weeks') {
     timeToElapse *= 7;
   }
+  return timeToElapse;
+};
+
+const infectedAtTime = (currentlyInfected, timeToElapse) => {
   const factorDoubles = 2 ** Math.floor(timeToElapse / 3);
   return currentlyInfected * factorDoubles;
 };
 
 const estimatorHelper = (data, val) => {
+  const timeToElapse = timeInDays(data.periodType, data.timeToElapse);
   const infected = data.reportedCases * val;
-  const infectionsByRequestedTime = infectedAtTime(
-    infected,
-    data.periodType,
-    data.timeToElapse
-  );
+  const infectionsByRequestedTime = infectedAtTime(infected, timeToElapse);
   const severeCasesByRequestedTime = Math.floor(
     0.15 * infectionsByRequestedTime
   );
