@@ -33,10 +33,10 @@ const estimatorHelper = (data, val) => {
   );
 
   // prettier-ignore
-  const dollarsInFlight = (infectionsByRequestedTime
+  const dollarsInFlight = Math.floor((infectionsByRequestedTime
     * data.region.avgDailyIncomeInUSD
     * data.region.avgDailyIncomePopulation)
-    / 30;
+    / infectionsByRequestedTime);
   return {
     currentlyInfected: infected,
     infectionsByRequestedTime,
