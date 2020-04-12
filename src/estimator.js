@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+// prettier-ignore
 const infectedAtTime = (currentlyInfected, periodType, timeToElapse) => {
   if (periodType === 'months') {
     timeToElapse *= 30;
@@ -20,6 +21,7 @@ const estimatorHelper = (data, val) => {
     0.15 * infectionsByRequestedTime
   );
   const beds = data.totalHospitalBeds * 0.35 - severeCasesByRequestedTime;
+  // prettier-ignore
   const hospitalBedsByRequestedTime = beds > 0 ? Math.floor(beds) : Math.ceil(beds);
 
   const casesForICUByRequestedTime = Math.floor(
@@ -30,10 +32,11 @@ const estimatorHelper = (data, val) => {
     infectionsByRequestedTime * 0.02
   );
 
-  const dollarsInFlight = infectionsByRequestedTime
+  // prettier-ignore
+  const dollarsInFlight = (infectionsByRequestedTime
     * data.region.avgDailyIncomeInUSD
-    * data.region.avgDailyIncomePopulation
-    * 30;
+    * data.region.avgDailyIncomePopulation)
+    / 30;
   return {
     currentlyInfected: infected,
     infectionsByRequestedTime,
